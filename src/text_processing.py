@@ -35,6 +35,7 @@ def clean_text(texts):
 def process_text(file_name):
     df = pd.read_csv(file_name)
     df['text'] = clean_text(df['text'])
+    classes_num = df.label.unique()
     dataset = tf.data.Dataset.from_tensor_slices(
         (tf.cast(df['text'].values, tf.string), tf.cast(df['label'].values, tf.int32)))
-    return dataset
+    return dataset, classes_num

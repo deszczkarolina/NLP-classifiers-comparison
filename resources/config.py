@@ -1,4 +1,4 @@
-train_data = "train_location"
+train_data = "resources/data/IMDB.csv"
 test_data = "test_location"
 
 # text processing
@@ -13,7 +13,13 @@ BATCH_SIZE = 64
 # models
 BERT = dict(
     enabled=True,
-    parameters=dict(),
+    parameters={
+        "TRAIN_EPOCHS": 2,
+        "LEARNING_RATE": 1e-4,
+        "WARM_UP_STEPS_RATIO": 0.1,
+        "DROPOUT_RATE": 0.1,
+        "OUTPUT_LAYER_ACTIVATION": "softmax",
+    },
     model_location="model_location"
 )
 
@@ -32,8 +38,8 @@ CNN = dict(
         "CONV_LAYER_ACTIVATION": "relu",
         "DENSE_LAYER_OUTPUT_DIM": 10,
         "DENSE_LAYER_ACTIVATION": "relu",
-        "OUTPUT_LAYER_ACTIVATION": "sigmoid",
-        "TRAIN_EPOCHS": 10,
+        "OUTPUT_LAYER_ACTIVATION": "softmax",
+        "TRAIN_EPOCHS": 2,
         "VALIDATION_STEPS": 30,
         "LEARNING_RATE": 1e-4
     },
@@ -41,14 +47,15 @@ CNN = dict(
 )
 
 RNN = dict(
-    enabled=False,
+    enabled=True,
     parameters={
         "EMBEDDING_LAYER_OUTPUT_DIM": 64,
         "LSTM_OUTPUT_DIM": 64,
         "DENSE_LAYER_OUTPUT_DIM": 64,
         "DENSE_LAYER_ACTIVATION": "relu",
         "TRAIN_EPOCHS": 10,
-        "VALIDATION_STEPS": 30
+        "VALIDATION_STEPS": 30,
+        "LEARNING_RATE": 1e-4
     },
     model_location="model_location"
 )
