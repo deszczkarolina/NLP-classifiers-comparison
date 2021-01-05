@@ -25,7 +25,10 @@ BERT = dict(
 
 SVM = dict(
     enabled=False,
-    parameters=dict(),
+    parameters={
+        "TFIDF_MAX_FEATURES": 6000,
+        "TRAIN_PERCENT": 0.7
+    },
     model_location="model_location"
 )
 
