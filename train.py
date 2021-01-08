@@ -30,25 +30,31 @@ def train():
     test_dataset = test_dataset.batch(config.BATCH_SIZE).prefetch(tf.data.experimental.AUTOTUNE)
 
     if config.BERT["ENABLED"]:
+        print('Training BERT model')
         BERT_model = BERT.train(train_dataset, test_dataset, len(classes))
         y_pred_proba = BERT_model.predict(test_df['text'])
         print('Evaluation of BERT model on test data')
         evaluate.evaluate_model(y_pred_proba, test_df['label'], classes)
+        tf.keras.backend.clear_session()
 
     if config.SVM["ENABLED"]:
         a = 1
 
     if config.CNN["ENABLED"]:
+        print('Training CNN model')
         CNN_model = CNN.train(train_dataset, test_dataset, len(classes))
         y_pred_proba = CNN_model.predict(test_df['text'])
         print('Evaluation of CNN model on test data')
         evaluate.evaluate_model(y_pred_proba, test_df['label'], classes)
+        tf.keras.backend.clear_session()
 
     if config.RNN["ENABLED"]:
+        print('Training RNN model')
         RNN_model = RNN.train(train_dataset, test_dataset, len(classes))
         y_pred_proba = RNN_model.predict(test_df['text'])
         print('Evaluation of RNN model on test data')
         evaluate.evaluate_model(y_pred_proba, test_df['label'], classes)
+        tf.keras.backend.clear_session()
 
 
 if __name__ == '__main__':

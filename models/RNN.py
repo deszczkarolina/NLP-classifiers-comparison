@@ -26,7 +26,6 @@ def train(train_dataset, test_dataset, classes_num):
                   optimizer=tf.keras.optimizers.Adam(params["LEARNING_RATE"]),
                   metrics=['accuracy'])
 
-    print(model.summary())
 
     max_validation_steps = tf.data.experimental.cardinality(test_dataset).numpy()
     if params['VALIDATION_STEPS'] <= max_validation_steps:
@@ -40,6 +39,8 @@ def train(train_dataset, test_dataset, classes_num):
     history = model.fit(train_dataset, epochs=params['TRAIN_EPOCHS'],
                         validation_data=test_dataset, callbacks=[early_stopping],
                         validation_steps=validation_steps)
+
+    print(model.summary())
 
     model.save(config.RNN['MODEL_LOCATION'])
     plot_model_training_history(history)
