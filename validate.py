@@ -3,6 +3,7 @@ from tensorflow import keras
 import evaluate
 from utils import text_processing
 from resources import validate_config as config
+import tensorflow_text as text
 
 
 def validate():
