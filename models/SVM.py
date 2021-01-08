@@ -35,7 +35,7 @@ def test(svm_model, test_features, test_labels):
 
 # TODO integrate into train.py
 def main():
-    data = pd.read_csv('../../resources/data/SPAM.csv', encoding='latin-1')
+    data = pd.read_csv('../resources/data/SPAM.csv', encoding='latin-1')
     total_samples = len(data['text'])
     labels = data['label']
     tfidf_features = vectorize(data['text'])
