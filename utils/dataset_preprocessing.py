@@ -5,7 +5,7 @@ import numpy as np
 
 # project root directory
 current_file_dir = path.dirname(path.realpath(__file__))
-root_dir = path.abspath(path.join(current_file_dir, "..", ".."))
+root_dir = path.abspath(path.join(current_file_dir, ".."))
 
 
 def saveProcessedFiles(data, processed_file_path, validation_file_path, validation_percent):
