@@ -1,5 +1,6 @@
 import tensorflow as tf
 import tensorflow_hub as hub
+import tensorflow_text as text
 from official.nlp import optimization
 
 from evaluate import plot_model_training_history
@@ -15,8 +16,6 @@ map_model_to_preprocess = {
         'https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/2',
 }
 
-# Needs to be accessible from validation scope (for proper model loading)
-gl_optimizer = None
 params = config.BERT['parameters']
 
 
@@ -51,9 +50,6 @@ def train(train_dataset, test_dataset, classes_num):
                   metrics=['accuracy'])
 
     print(model.summary())
-
-    global gl_optimizer
-    gl_optimizer = optimizer
 
     max_validation_steps = tf.data.experimental.cardinality(test_dataset).numpy()
     if params['VALIDATION_STEPS'] <= max_validation_steps:

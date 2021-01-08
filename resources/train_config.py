@@ -1,4 +1,4 @@
-DATASET_LOCATION = "../resources/data/IMDB.csv"
+DATASET_LOCATION = "resources/data/IMDB.csv"
 TRAIN_PERCENT = 0.8
 
 # text processing
