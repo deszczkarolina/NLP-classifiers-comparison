@@ -4,9 +4,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.svm import LinearSVC
 
-from resources import config
+from resources import train_config
 
-params = config.SVM['parameters']
+params = train_config.SVM['parameters']
 
 
 def vectorize(text):
