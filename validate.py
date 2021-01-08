@@ -1,10 +1,9 @@
 from tensorflow import keras
 
 import evaluate
-import resources.validate_config as config
 from models import BERT
 from utils import text_processing
-
+from resources import validate_config as config
 
 def validate():
     validate_path = config.DATASET_LOCATION

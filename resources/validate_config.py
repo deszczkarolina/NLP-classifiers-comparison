@@ -1,4 +1,4 @@
-DATASET_LOCATION = "../resources/data/IMDB_validate.csv"
+DATASET_LOCATION = "resources/data/IMDB_validate.csv"
 
 # models to evaluate
 BERT = {
