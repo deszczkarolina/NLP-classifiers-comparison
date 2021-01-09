@@ -44,19 +44,25 @@ def train():
 
 def convert_to_tf_types(train_df, test_df):
     train_dataset = tf.data.Dataset.from_tensor_slices(
-        (tf.cast(train_df['text'].values, tf.string), tf.cast(train_df['label'].values, tf.int32)))
+        (tf.cast(train_df['text'].values, tf.string), tf.cast(train_df['label'].values, tf.int32))
+    )
     test_dataset = tf.data.Dataset.from_tensor_slices(
-        (tf.cast(test_df['text'].values, tf.string), tf.cast(test_df['label'].values, tf.int32)))
+        (tf.cast(test_df['text'].values, tf.string), tf.cast(test_df['label'].values, tf.int32))
+    )
 
     # creates len(dataset)/BATCH_SIZE batches. Shuffle takes first BUFFER_SIZE elements from dataset,
     # than randomly takes BATCH_SIZE elements from buffer. Those elements are replaced with next ones from original
     # dataset. This is repeated until are samples are consumed.
     # prefetching allows later elements to be prepared while the current element is being processed. Improves latency
     # and throughput
+    train_dataset = train_dataset \
+        .shuffle(config.BUFFER_SIZE) \
+        .batch(config.BATCH_SIZE) \
+        .prefetch(tf.data.experimental.AUTOTUNE)
 
-    train_dataset = train_dataset.shuffle(config.BUFFER_SIZE).batch(config.BATCH_SIZE).prefetch(
-        tf.data.experimental.AUTOTUNE)
-    test_dataset = test_dataset.batch(config.BATCH_SIZE).prefetch(tf.data.experimental.AUTOTUNE)
+    test_dataset = test_dataset \
+        .batch(config.BATCH_SIZE) \
+        .prefetch(tf.data.experimental.AUTOTUNE)
 
     return train_dataset, test_dataset
 
