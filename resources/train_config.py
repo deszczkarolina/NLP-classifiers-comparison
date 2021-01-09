@@ -1,4 +1,4 @@
-DATASET_LOCATION = "resources/data/IMDB.csv"
+DATASET_LOCATION = "resources/data/SPAM.csv"
 CLEAN_TEXT = True
 TRAIN_PERCENT = 0.8
 
@@ -12,7 +12,7 @@ BATCH_SIZE = 64
 
 # models
 BERT = {
-    'ENABLED': True,
+    'ENABLED': False,
     'parameters': {
         "TRAIN_EPOCHS": 1,
         "LEARNING_RATE": 1e-4,
@@ -26,12 +26,11 @@ BERT = {
 }
 
 SVM = {
-    'ENABLED': False,
+    'ENABLED': True,
     'parameters': {
         "TFIDF_MAX_FEATURES": 6000,
-        "TRAIN_PERCENT": 0.7
     },
-    'MODEL_LOCATION': "model_location"
+    'MODEL_LOCATION': "output/SVM_6000"
 }
 
 CNN = {

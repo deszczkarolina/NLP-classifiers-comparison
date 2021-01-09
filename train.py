@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 from evaluate import evaluate_model
-from models import RNN, CNN, BERT
+from models import RNN, CNN, BERT, SVM
 from resources import train_config as config
 from utils.split_dataset import split_dataset
 from utils.text_processing import load_dataset
@@ -21,7 +21,12 @@ def train():
         tf.keras.backend.clear_session()
 
     if config.SVM["ENABLED"]:
-        a = 1
+        print('Training SVM model')
+        tfidf, SVM_model = SVM.train(train_df)
+        y_pred_proba = SVM.predict(tfidf, SVM_model, test_df['text'])
+        print('Evaluation of SVM model on test data')
+        # TODO fix type of y_pred_proba here
+        evaluate_model(y_pred_proba, test_df['label'], classes)
 
     if config.CNN["ENABLED"]:
         print('Training CNN model')
