@@ -52,8 +52,9 @@ def read_files_into_dataframe(data_dir, labels):
             for entry in entries:
                 if entry.is_file():
                     with open(entry.path, "r", encoding="latin1") as file:
-                        text = file.readlines()
-                        data[len(data.keys())] = [label, " ".join(text)]
+                        lines = file.readlines()
+                        text = " ".join(lines).replace('\n', ' ')
+                        data[len(data.keys())] = [label, text]
     data = pd.DataFrame(data).T
     data.columns = ['label', 'text']
     data = data.drop_duplicates(subset=['text'])
