@@ -57,5 +57,6 @@ def process_MAILS(
     print("Class counts (after removing duplicate files)", get_class_counts(data_dir, labels))
     df = read_files_into_dataframe(data_dir, labels)
     print("Class counts (after removing duplicate texts)\n", get_class_counts_df(df))
+    df = df.replace({'label': {'Crime': 0, 'Politics': 1, 'Science': 2}})
     save_processed_files(df, processed_file_path, validation_file_path, validation_percent)
     shutil.rmtree(data_dir)
