@@ -8,6 +8,7 @@ root_dir = path.abspath(path.join(current_file_dir, ".."))
 
 
 def save_processed_files(data, processed_file_path, validation_file_path, validation_percent):
+    data = data.sample(frac=1).reset_index(drop=True)
     total_samples = len(data)
     validation_cutoff = int(np.floor(validation_percent * total_samples))
     validation_data = data[0:validation_cutoff]
