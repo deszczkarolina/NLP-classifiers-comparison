@@ -14,10 +14,9 @@ def train():
     train_df = df[0:train_cutoff]
     test_df = df[train_cutoff + 1: total_samples]
 
-    train_dataset, test_dataset = convert_to_tf_types(train_df, test_df)
-
     if config.BERT["ENABLED"]:
         print('Training BERT model')
+        train_dataset, test_dataset = convert_to_tf_types(train_df, test_df)
         BERT_model = BERT.train(train_dataset, test_dataset, len(classes))
         y_pred_proba = BERT_model.predict(test_df['text'])
         print('Evaluation of BERT model on test data')
@@ -29,6 +28,7 @@ def train():
 
     if config.CNN["ENABLED"]:
         print('Training CNN model')
+        train_dataset, test_dataset = convert_to_tf_types(train_df, test_df)
         CNN_model = CNN.train(train_dataset, test_dataset, len(classes))
         y_pred_proba = CNN_model.predict(test_df['text'])
         print('Evaluation of CNN model on test data')
@@ -37,6 +37,7 @@ def train():
 
     if config.RNN["ENABLED"]:
         print('Training RNN model')
+        train_dataset, test_dataset = convert_to_tf_types(train_df, test_df)
         RNN_model = RNN.train(train_dataset, test_dataset, len(classes))
         y_pred_proba = RNN_model.predict(test_df['text'])
         print('Evaluation of RNN model on test data')
