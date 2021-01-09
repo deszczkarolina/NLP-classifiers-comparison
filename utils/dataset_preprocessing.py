@@ -59,7 +59,3 @@ def process_MAILS(
     print("Class counts (after removing duplicate texts)\n", get_class_counts_df(df))
     save_processed_files(df, processed_file_path, validation_file_path, validation_percent)
     shutil.rmtree(data_dir)
-
-
-if __name__ == '__main__':
-    process_MAILS('../resources/raw-data/mails.zip')
