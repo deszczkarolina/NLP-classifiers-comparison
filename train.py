@@ -1,18 +1,15 @@
 import tensorflow as tf
-import numpy as np
 
-from resources import train_config as config
 from evaluate import evaluate_model
-from utils.text_processing import load_dataset
 from models import RNN, CNN, BERT
+from resources import train_config as config
+from utils.split_dataset import split_dataset
+from utils.text_processing import load_dataset
 
 
 def train():
     df, classes = load_dataset(config.DATASET_LOCATION, config.CLEAN_TEXT)
-    total_samples = len(df['text'])
-    train_cutoff = int(np.floor(config.TRAIN_PERCENT * total_samples))
-    train_df = df[0:train_cutoff]
-    test_df = df[train_cutoff + 1: total_samples]
+    train_df, test_df = split_dataset(df, config.TRAIN_PERCENT)
 
     if config.BERT["ENABLED"]:
         print('Training BERT model')
