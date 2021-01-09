@@ -1,15 +1,15 @@
 import tensorflow as tf
 import numpy as np
 
-import evaluate
-import resources.train_config as config
-from utils import text_processing
+from resources import train_config as config
+from evaluate import evaluate_model
+from utils.text_processing import load_dataset
 from models import RNN, CNN, BERT
 
 
 def train():
     dataset_path = config.DATASET_LOCATION
-    df, classes = text_processing.process_text(dataset_path)
+    df, classes = load_dataset(dataset_path)
     total_samples = len(df['text'])
     train_cutoff = int(np.floor(config.TRAIN_PERCENT * total_samples))
     train_df = df[0:train_cutoff]
@@ -34,7 +34,7 @@ def train():
         BERT_model = BERT.train(train_dataset, test_dataset, len(classes))
         y_pred_proba = BERT_model.predict(test_df['text'])
         print('Evaluation of BERT model on test data')
-        evaluate.evaluate_model(y_pred_proba, test_df['label'], classes)
+        evaluate_model(y_pred_proba, test_df['label'], classes)
         tf.keras.backend.clear_session()
 
     if config.SVM["ENABLED"]:
@@ -45,7 +45,7 @@ def train():
         CNN_model = CNN.train(train_dataset, test_dataset, len(classes))
         y_pred_proba = CNN_model.predict(test_df['text'])
         print('Evaluation of CNN model on test data')
-        evaluate.evaluate_model(y_pred_proba, test_df['label'], classes)
+        evaluate_model(y_pred_proba, test_df['label'], classes)
         tf.keras.backend.clear_session()
 
     if config.RNN["ENABLED"]:
@@ -53,7 +53,7 @@ def train():
         RNN_model = RNN.train(train_dataset, test_dataset, len(classes))
         y_pred_proba = RNN_model.predict(test_df['text'])
         print('Evaluation of RNN model on test data')
-        evaluate.evaluate_model(y_pred_proba, test_df['label'], classes)
+        evaluate_model(y_pred_proba, test_df['label'], classes)
         tf.keras.backend.clear_session()
 
 
