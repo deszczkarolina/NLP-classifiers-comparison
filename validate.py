@@ -1,5 +1,5 @@
 from tensorflow import keras
-import tensorflow_text as text
+import tensorflow_text as text  # this import may seem unused but is necessary
 
 from resources import validate_config as config
 from evaluate import evaluate_model
