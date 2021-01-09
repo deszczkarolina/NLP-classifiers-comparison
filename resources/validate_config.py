@@ -1,4 +1,5 @@
 DATASET_LOCATION = "resources/data/IMDB_validate.csv"
+CLEAN_TEXT = True
 
 # models to evaluate
 BERT = {

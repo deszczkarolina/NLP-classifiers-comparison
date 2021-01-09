@@ -1,4 +1,5 @@
 DATASET_LOCATION = "resources/data/IMDB.csv"
+CLEAN_TEXT = True
 TRAIN_PERCENT = 0.8
 
 # text processing

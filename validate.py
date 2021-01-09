@@ -7,8 +7,7 @@ from utils.text_processing import load_dataset
 
 
 def validate():
-    validate_path = config.DATASET_LOCATION
-    validate_dataset, classes = load_dataset(validate_path)
+    validate_dataset, classes = load_dataset(config.DATASET_LOCATION, config.CLEAN_TEXT)
 
     if config.BERT["ENABLED"]:
         BERT_model = keras.models.load_model(config.BERT['MODEL_LOCATION'], compile=False)

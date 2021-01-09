@@ -31,8 +31,9 @@ def clean_text(texts):
     return remove_stopwords_and_lemmatize(texts)
 
 
-def load_dataset(file_name):
+def load_dataset(file_name, do_text_cleaning: bool):
     df = pd.read_csv(file_name)
-    df['text'] = clean_text(df['text'])
+    if do_text_cleaning:
+        df['text'] = clean_text(df['text'])
     classes = df.label.unique()
     return df, classes

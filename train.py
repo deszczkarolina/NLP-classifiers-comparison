@@ -8,8 +8,7 @@ from models import RNN, CNN, BERT
 
 
 def train():
-    dataset_path = config.DATASET_LOCATION
-    df, classes = load_dataset(dataset_path)
+    df, classes = load_dataset(config.DATASET_LOCATION, config.CLEAN_TEXT)
     total_samples = len(df['text'])
     train_cutoff = int(np.floor(config.TRAIN_PERCENT * total_samples))
     train_df = df[0:train_cutoff]
