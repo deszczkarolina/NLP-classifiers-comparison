@@ -58,7 +58,8 @@ def read_files_into_dataframe(data_dir, labels):
     data = pd.DataFrame(data).T
     data.columns = ['label', 'text']
     data = data.drop_duplicates(subset=['text'])
-    return data
+    empty_rows = data['text'].str.match("^\s*$")
+    return data[~empty_rows]
 
 
 def get_class_counts(data_dir, labels):
