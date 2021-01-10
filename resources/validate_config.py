@@ -1,4 +1,5 @@
 DATASET_LOCATION = "resources/data/IMDB_validate.csv"
+CLEAN_TEXT = True
 
 # models to evaluate
 BERT = {
@@ -10,7 +11,7 @@ BERT = {
 SVM = {
     'ENABLED': False,
     'NAME': 'SVM classifier',
-    'MODEL_LOCATION': "BERT_local_1ep"
+    'MODEL_LOCATION': "output/SVM_6000"
 }
 
 RNN = {

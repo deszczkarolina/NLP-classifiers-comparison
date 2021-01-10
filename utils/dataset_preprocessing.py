@@ -1,6 +1,7 @@
 import numpy as np
 
 from utils.mails_utils import *
+from utils.split_dataset import split_dataset
 
 # project root directory
 current_file_dir = path.dirname(path.realpath(__file__))
@@ -9,11 +10,7 @@ root_dir = path.abspath(path.join(current_file_dir, ".."))
 
 def save_processed_files(data, processed_file_path, validation_file_path, validation_percent):
     data = data.sample(frac=1).reset_index(drop=True)
-    total_samples = len(data)
-    validation_cutoff = int(np.floor(validation_percent * total_samples))
-    validation_data = data[0:validation_cutoff]
-    train_data = data[validation_cutoff + 1: total_samples]
-
+    validation_data, train_data = split_dataset(data, validation_percent)
     train_data.to_csv(processed_file_path, index=False)
     validation_data.to_csv(validation_file_path, index=False)
 
