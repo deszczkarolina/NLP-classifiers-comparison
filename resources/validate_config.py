@@ -11,7 +11,7 @@ BERT = {
 SVM = {
     'ENABLED': False,
     'NAME': 'SVM classifier',
-    'MODEL_LOCATION': "BERT_local_1ep"
+    'MODEL_LOCATION': "output/SVM_6000"
 }
 
 RNN = {

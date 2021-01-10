@@ -31,3 +31,8 @@ def vectorize(texts, tfidf=None):
 def save(tfidf, model):
     to_save = {'tfidf': tfidf, 'model': model}
     joblib.dump(to_save, train_config.SVM['MODEL_LOCATION'])
+
+
+def load(saved_model_path):
+    loaded = joblib.load(saved_model_path)
+    return loaded['tfidf'], loaded['model']

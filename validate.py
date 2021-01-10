@@ -1,6 +1,7 @@
 from tensorflow import keras
 import tensorflow_text as text  # this import may seem unused but is necessary
 
+from models import SVM
 from resources import validate_config as config
 from evaluate import evaluate_model
 from utils.text_processing import load_dataset
@@ -16,10 +17,10 @@ def validate():
         evaluate_model(y_pred_proba, validate_dataset['label'], classes)
 
     if config.SVM["ENABLED"]:
-        SVM_model = keras.models.load_model(config.SVM['MODEL_LOCATION'])
-        y_pred_proba = SVM_model.predict(validate_dataset['text'])
+        tfidf, SVM_model = SVM.load(config.SVM['MODEL_LOCATION'])
+        y_pred = SVM.predict(tfidf, SVM_model, validate_dataset['text'])
         print('Evaluation of ' + config.SVM['NAME'])
-        evaluate_model(y_pred_proba, validate_dataset['label'], classes)
+        evaluate_model(y_pred, validate_dataset['label'], classes)
 
     if config.CNN["ENABLED"]:
         CNN_model = keras.models.load_model(config.CNN['MODEL_LOCATION'])
