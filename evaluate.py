@@ -46,14 +46,15 @@ def plot_PR_curve(pos_pred_proba, y_true):
 
 
 def evaluate_model(y_pred_proba, y_true, labels):
-    y_pred = np.argmax(y_pred_proba, axis=-1)
+    proba_available = y_pred_proba.ndim == 2
+    y_pred = np.argmax(y_pred_proba, axis=-1) if proba_available else y_pred_proba
     print('Confusion matrix:')
     print(sklearn.metrics.confusion_matrix(y_true, y_pred, labels=labels))
     print('Precision, Recall, F1, accuracy metrics:')
     # precision, recall, F1, accuracy
     print(sklearn.metrics.classification_report(y_true, y_pred, digits=4))
 
-    if len(labels) == 2:
+    if proba_available and len(labels) == 2:
         pos_pred_proba = np.delete(y_pred_proba, 0, 1)
         plot_roc_curve(pos_pred_proba, y_true)
         plot_PR_curve(pos_pred_proba, y_true)

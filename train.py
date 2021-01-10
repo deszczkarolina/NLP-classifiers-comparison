@@ -23,10 +23,9 @@ def train():
     if config.SVM["ENABLED"]:
         print('Training SVM model')
         tfidf, SVM_model = SVM.train(train_df)
-        y_pred_proba = SVM.predict(tfidf, SVM_model, test_df['text'])
+        y_pred = SVM.predict(tfidf, SVM_model, test_df['text'])
         print('Evaluation of SVM model on test data')
-        # TODO fix type of y_pred_proba here
-        evaluate_model(y_pred_proba, test_df['label'], classes)
+        evaluate_model(y_pred, test_df['label'], classes)
 
     if config.CNN["ENABLED"]:
         print('Training CNN model')
