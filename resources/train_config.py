@@ -1,5 +1,5 @@
 DATASET_LOCATION = "resources/data/SPAM.csv"
-CLEAN_TEXT = True
+CLEAN_TEXT = False
 TRAIN_PERCENT = 0.8
 
 # text processing
@@ -29,8 +29,14 @@ SVM = {
     'ENABLED': True,
     'parameters': {
         "TFIDF_MAX_FEATURES": 6000,
+        "C_REGULARIZATION": 2.5,
+        "CLASS_WEIGHT": {
+            0: 1,  # ham
+            1: 5   # spam
+        },
+        "KERNEL": "linear"
     },
-    'MODEL_LOCATION': "output/SVM_6000"
+    'MODEL_LOCATION': "output/SVM_6000_SPAM"
 }
 
 CNN = {
