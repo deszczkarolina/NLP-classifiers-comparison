@@ -1,6 +1,6 @@
 import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.svm import LinearSVC
+from sklearn.svm import LinearSVC, SVC
 
 from resources import train_config
 
@@ -10,7 +10,8 @@ params = train_config.SVM['parameters']
 def train(train_df):
     labels = train_df['label']
     tfidf_features, tfidf = vectorize(train_df['text'])
-    model = LinearSVC().fit(tfidf_features, labels)
+    model = get_SVC()
+    model.fit(tfidf_features, labels)
     save(tfidf, model)
     return tfidf, model
 
@@ -26,6 +27,20 @@ def vectorize(texts, tfidf=None):
         tfidf = TfidfVectorizer(max_features=params['TFIDF_MAX_FEATURES'])
         tfidf.fit(corpus)
     return tfidf.transform(corpus), tfidf
+
+
+def get_SVC():
+    if params['KERNEL'] == 'linear':
+        return LinearSVC(
+            C=params['C_REGULARIZATION'],
+            class_weight=params['CLASS_WEIGHT'],
+        )
+    else:
+        return SVC(
+            C=params['C_REGULARIZATION'],
+            class_weight=params['CLASS_WEIGHT'],
+            kernel=params['KERNEL']
+        )
 
 
 def save(tfidf, model):

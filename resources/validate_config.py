@@ -1,4 +1,4 @@
-DATASET_LOCATION = "resources/data/IMDB_validate.csv"
+DATASET_LOCATION = "resources/data/SPAM_validate.csv"
 CLEAN_TEXT = True
 
 # models to evaluate
@@ -9,9 +9,9 @@ BERT = {
 }
 
 SVM = {
-    'ENABLED': False,
+    'ENABLED': True,
     'NAME': 'SVM classifier',
-    'MODEL_LOCATION': "output/SVM_6000"
+    'MODEL_LOCATION': "output/SVM_6000_SPAM"
 }
 
 RNN = {
@@ -21,7 +21,7 @@ RNN = {
 }
 
 CNN = {
-    'ENABLED': True,
+    'ENABLED': False,
     'NAME': 'CNN network 15ep',
     'MODEL_LOCATION': "../resources/CNN_15_earlystopcross_fil7"
 }
