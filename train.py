@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-from evaluate import evaluate_model
+from utils.evaluate import evaluate_model
 from models import RNN, CNN, BERT, SVM
 from resources import train_config as config
 from utils.split_dataset import split_dataset

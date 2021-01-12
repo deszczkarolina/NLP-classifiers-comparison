@@ -3,7 +3,7 @@ import tensorflow_text as text  # this import may seem unused but is necessary
 
 from models import SVM
 from resources import validate_config as config
-from evaluate import evaluate_model
+from utils.evaluate import evaluate_model
 from utils.text_processing import load_dataset
 
 

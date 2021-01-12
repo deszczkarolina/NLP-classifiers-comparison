@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-from evaluate import plot_model_training_history
+from utils.evaluate import plot_model_training_history
 from resources import train_config as config
 
 params = config.RNN['PARAMETERS']

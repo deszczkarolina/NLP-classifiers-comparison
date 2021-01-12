@@ -1,9 +1,9 @@
 import tensorflow as tf
 import tensorflow_hub as hub
-import tensorflow_text as text
+import tensorflow_text as text  # this import may seem unused but is necessary
 from official.nlp import optimization
 
-from evaluate import plot_model_training_history
+from utils.evaluate import plot_model_training_history
 from resources import train_config as config
 
 map_name_to_handle = {
