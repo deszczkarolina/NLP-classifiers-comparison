@@ -3,7 +3,7 @@ import tensorflow as tf
 from evaluate import plot_model_training_history
 from resources import train_config as config
 
-params = config.RNN['parameters']
+params = config.RNN['PARAMETERS']
 
 
 def train(train_dataset, test_dataset, classes_num):

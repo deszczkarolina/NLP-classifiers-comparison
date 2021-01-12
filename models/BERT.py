@@ -16,7 +16,7 @@ map_model_to_preprocess = {
         'https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/2',
 }
 
-params = config.BERT['parameters']
+params = config.BERT['PARAMETERS']
 
 
 def train(train_dataset, test_dataset, classes_num):

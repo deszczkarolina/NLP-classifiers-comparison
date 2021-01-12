@@ -13,7 +13,7 @@ BATCH_SIZE = 64
 # models
 BERT = {
     'ENABLED': False,
-    'parameters': {
+    'PARAMETERS': {
         "TRAIN_EPOCHS": 1,
         "LEARNING_RATE": 1e-4,
         "WARM_UP_STEPS_RATIO": 0.1,
@@ -27,7 +27,7 @@ BERT = {
 
 SVM = {
     'ENABLED': True,
-    'parameters': {
+    'PARAMETERS': {
         "TFIDF_MAX_FEATURES": 6000,
         "C_REGULARIZATION": 2.5,
         "CLASS_WEIGHT": {
@@ -41,7 +41,7 @@ SVM = {
 
 CNN = {
     'ENABLED': False,
-    'parameters': {
+    'PARAMETERS': {
         "EMBEDDING_LAYER_OUTPUT_DIM": 64,
         "FILTERS_NUMBER": 128,
         "FILTERS_SIZE": 5,
@@ -59,7 +59,7 @@ CNN = {
 
 RNN = {
     'ENABLED': False,
-    'parameters': {
+    'PARAMETERS': {
         "EMBEDDING_LAYER_OUTPUT_DIM": 64,
         "LSTM_OUTPUT_DIM": 64,
         "DENSE_LAYER_OUTPUT_DIM": 64,

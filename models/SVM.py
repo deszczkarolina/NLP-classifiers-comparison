@@ -4,7 +4,7 @@ from sklearn.svm import LinearSVC, SVC
 
 from resources import train_config
 
-params = train_config.SVM['parameters']
+params = train_config.SVM['PARAMETERS']
 
 
 def train(train_df):
