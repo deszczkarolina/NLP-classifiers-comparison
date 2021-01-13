@@ -5,23 +5,23 @@ CLEAN_TEXT = True
 BERT = {
     'ENABLED': False,
     'NAME': 'Bert classifier',
-    'MODEL_LOCATION': "BERT_local_1ep"
+    'MODEL_LOCATION': "output/BERT_SPAM"
 }
 
 SVM = {
     'ENABLED': True,
     'NAME': 'SVM classifier',
-    'MODEL_LOCATION': "output/SVM_6000_SPAM"
+    'MODEL_LOCATION': "output/SVM_SPAM"
 }
 
 RNN = {
     'ENABLED': False,
     'NAME': 'RNN network',
-    'MODEL_LOCATION': "../resources/RNN_SPAM_30ep"
+    'MODEL_LOCATION': "output/RNN_SPAM"
 }
 
 CNN = {
     'ENABLED': False,
-    'NAME': 'CNN network 15ep',
-    'MODEL_LOCATION': "../resources/CNN_15_earlystopcross_fil7"
+    'NAME': 'CNN network',
+    'MODEL_LOCATION': "output/CNN_SPAM"
 }
