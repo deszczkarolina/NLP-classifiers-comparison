@@ -35,5 +35,5 @@ def load_dataset(file_name, do_text_cleaning: bool):
     df = pd.read_csv(file_name)
     if do_text_cleaning:
         df['text'] = clean_text(df['text'])
-    classes = df.label.unique()
+    classes = np.sort(df.label.unique())
     return df, classes
