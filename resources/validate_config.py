@@ -1,4 +1,4 @@
-DATASET_LOCATION = "resources/data/SPAM_validate.csv"
+DATASET_LOCATION = "resources/data/Isoflavones_validate.csv"
 CLEAN_TEXT = True
 
 # models to evaluate
@@ -11,7 +11,7 @@ BERT = {
 SVM = {
     'ENABLED': True,
     'NAME': 'SVM classifier',
-    'MODEL_LOCATION': "output/SVM_SPAM"
+    'MODEL_LOCATION': "output/SVM_Isofl"
 }
 
 RNN = {
@@ -21,7 +21,7 @@ RNN = {
 }
 
 CNN = {
-    'ENABLED': False,
+    'ENABLED': True,
     'NAME': 'CNN network',
-    'MODEL_LOCATION': "output/CNN_SPAM"
+    'MODEL_LOCATION': "output/CNN_Isofl"
 }

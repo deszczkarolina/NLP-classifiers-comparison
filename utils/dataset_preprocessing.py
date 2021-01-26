@@ -15,6 +15,18 @@ def save_processed_files(data, processed_file_path, validation_file_path, valida
     validation_data.to_csv(validation_file_path, index=False)
 
 
+def process_REFSA(
+        file_path,
+        processed_file_path=path.join(root_dir, "resources/data/ERIS.csv"),
+        validation_file_path=path.join(root_dir, "resources/data/ERIS_validate.csv"),
+        validation_percent=0.2
+):
+    df = pd.read_csv(file_path, usecols=['Abstract', 'Indicator'])
+    df = df.replace({'Indicator': {-1: 0, 1: 1}})
+    df = df.rename(columns={"Indicator": "label", "Abstract": "text"})
+    save_processed_files(df, processed_file_path, validation_file_path, validation_percent)
+
+
 def process_IMDB(
         file_path,
         processed_file_path=path.join(root_dir, "resources/data/IMDB.csv"),
@@ -58,3 +70,26 @@ def process_MAILS(
     df = df.replace({'label': {'Crime': 0, 'Politics': 1, 'Science': 2}})
     save_processed_files(df, processed_file_path, validation_file_path, validation_percent)
     shutil.rmtree(data_dir)
+
+
+def process_all_REFSA_datasets():
+    process_REFSA('../resources/raw-data/use_as_train_ERIS.csv',
+                  processed_file_path='../resources/data/ERIS.csv',
+                  validation_file_path='../resources/data/ERIS_validate222.csv', validation_percent=0)
+    process_REFSA('../resources/raw-data/use_as_validation_ERIS.csv',
+                  processed_file_path='../resources/data/ERIS_validate.csv',
+                  validation_file_path='../resources/data/ERIS_validate222.csv', validation_percent=0)
+    process_REFSA('../resources/raw-data/use_as_validation_Isoflavones.csv',
+                  processed_file_path='../resources/data/Isoflavones_validate.csv',
+                  validation_file_path='../resources/data/Isof_validate222.csv', validation_percent=0)
+    process_REFSA('../resources/raw-data/use_as_train_Isoflavones.csv',
+                  processed_file_path='../resources/data/Isoflavones.csv',
+                  validation_file_path='../resources/data/Isof_validate222.csv', validation_percent=0)
+    process_REFSA('../resources/raw-data/use_as_train_Bacillus.csv',
+                  processed_file_path='../resources/data/QPS.csv',
+                  validation_file_path='../resources/data/QPS_validate222.csv', validation_percent=0)
+    process_REFSA('../resources/raw-data/use_as_validation_Bacillus.csv',
+                  processed_file_path='../resources/data/QPS_validate.csv',
+                  validation_file_path='../resources/data/QPS_validate222.csv', validation_percent=0)
+
+

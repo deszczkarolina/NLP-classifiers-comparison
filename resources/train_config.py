@@ -1,4 +1,4 @@
-DATASET_LOCATION = "resources/data/SPAM.csv"
+DATASET_LOCATION = "resources/data/Isoflavones.csv"
 CLEAN_TEXT = True
 TRAIN_PERCENT = 0.8
 
@@ -32,15 +32,15 @@ SVM = {
         "C_REGULARIZATION": 2.5,
         "CLASS_WEIGHT": {
             0: 1,  # ham
-            1: 5   # spam
+            1: 1   # spam
         },
         "KERNEL": "linear"
     },
-    'MODEL_LOCATION': "output/SVM_SPAM"
+    'MODEL_LOCATION': "output/SVM_Isofl"
 }
 
 CNN = {
-    'ENABLED': False,
+    'ENABLED': True,
     'PARAMETERS': {
         "EMBEDDING_LAYER_OUTPUT_DIM": 64,
         "FILTERS_NUMBER": 128,
@@ -54,7 +54,7 @@ CNN = {
         "LEARNING_RATE": 1e-4,
         "EARLY_STOPPING_PATIENCE_STEPS": 5,
     },
-    'MODEL_LOCATION': "output/CNN_SPAM"
+    'MODEL_LOCATION': "output/CNN_Isofl"
 }
 
 RNN = {
@@ -69,5 +69,5 @@ RNN = {
         "LEARNING_RATE": 1e-4,
         "EARLY_STOPPING_PATIENCE_STEPS": 5,
     },
-    'MODEL_LOCATION': "output/RNN_SPAM"
+    'MODEL_LOCATION': "output/Isofl_RNN"
 }
